@@ -15,4 +15,4 @@ class UnknownFileProcessor(BaseFileProcessor):
         # TODO save this extension in a log!
         logger.warn(self.file_path)
         ## FIXME update with proper connector based on config!
-        self.connector.add(self.file_path)
+        self.connector.add(self.data)

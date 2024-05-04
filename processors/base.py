@@ -15,6 +15,14 @@ class BaseFileProcessor:
 
     def __init__(self, file_path: str=None):
         self.file_path = file_path
+        self.data = self.get_data()
+
 
     def process(self):
         logger.info(f"processing: {self.file_path}")
+
+    def get_data(self):
+        # TODO add based on File model!
+        return {
+            'path': self.file_path
+        }

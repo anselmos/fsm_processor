@@ -10,7 +10,7 @@ FILE_TYPES_TO_PROCESSOR.update(ImageProcessor().file_type_items())
 FILE_TYPES_TO_PROCESSOR.update(VideoProcessor().file_type_items())
 logger = get_logger_config(__name__)
 
-
+# FIXME move this into BaseFileProcessor!!
 class FileType:
     def __init__(self, file_path: str=None):
         self.file_path = file_path
@@ -26,6 +26,7 @@ class FileType:
             logger.warn("MULTIPLE FILE EXTENSION DETECTED IN FILE NAME.")
             return splited_by_dot[-1].upper()
 
+    # FIXME move this into processors.__init__
     def get_processor(self):
         processor = FILE_TYPES_TO_PROCESSOR.get(self.extension, None)
         if not processor:

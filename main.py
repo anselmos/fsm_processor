@@ -2,6 +2,7 @@ from kafka import KafkaConsumer
 
 from constants import KAFKA_TOPIC
 from file_type import FileType
+from processors.base import BaseFileProcessor
 from utils import get_logger_config
 
 logger = get_logger_config(__name__)
