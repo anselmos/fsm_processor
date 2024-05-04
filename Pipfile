@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 kafka-python = "*"
 python-dotenv = "*"
+pillow = "*"
+sqlalchemy = "*"
 
 [dev-packages]
 
