@@ -20,7 +20,7 @@ class ImageProcessor(BaseFileProcessor):
 
 
     def get_data(self):
-        super().get_data()
+        return super().get_data()
 
     def read_image_data(self):
         try:
