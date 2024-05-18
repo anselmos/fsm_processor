@@ -25,12 +25,14 @@ class BaseFileProcessor:
         self.connector = PGConnector()
         if file_path and not self.has_path():
             ## FIXME update with proper connector based on config!
+            if not os_path.exists(self.file_path):
+                return
             self.md5sum = self.md5checksum(self.file_path)
             self.data = self.get_data()
 
     def process(self):
         logger.info(f"processing: {self.file_path}")
-        if not self.has_path():
+        if not self.has_path() and os_path.exists(self.file_path):
             self.connector.add(self.data)
 
     def get_name(self):
