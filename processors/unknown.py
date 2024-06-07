@@ -9,6 +9,6 @@ class UnknownFileProcessor(BaseFileProcessor):
         super().__init__(*args, **kwargs)
 
     def process(self):
-        super().process()
-        # TODO save this extension in a log!
         logger.warn(self.file_path)
+        return super().process()
+        # TODO save this extension in a log!

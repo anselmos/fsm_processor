@@ -22,18 +22,25 @@ class BaseFileProcessor:
 
     def __init__(self, file_path: str=None):
         self.file_path = file_path
-        self.connector = PGConnector()
-        if file_path and not self.has_path():
-            ## FIXME update with proper connector based on config!
-            if not os_path.exists(self.file_path):
-                return
-            self.md5sum = self.md5checksum(self.file_path)
-            self.data = self.get_data()
+        # self.connector = PGConnector()
+        if not self.file_path or not os_path.exists(self.file_path):
+            return
+        self.md5sum = self.md5checksum(self.file_path)
+        # TODO !! checking if path is in DB
+        # if file_path and not self.has_path():
+        #     ## FIXME update with proper connector based on config!
+        #     if not os_path.exists(self.file_path):
+        #         return
+        #     self.md5sum = self.md5checksum(self.file_path)
+        #     self.data = self.get_data()
 
     def process(self):
         logger.info(f"processing: {self.file_path}")
-        if not self.has_path() and os_path.exists(self.file_path):
-            self.connector.add(self.data)
+        if os_path.exists(self.file_path):
+            return self.get_data()
+        # TODO !! checking if path is in DB
+        # if not self.has_path() and os_path.exists(self.file_path):
+        #     self.connector.add(self.data)
 
     def get_name(self):
         return os_path.split(self.file_path)[-1]
@@ -70,7 +77,7 @@ class BaseFileProcessor:
             'path': self.file_path,
             'md5sum': self.md5sum,
             'clean': PATH_CLEAN,
-            'duplicated_md5': self.is_duplicated(),
+            # 'duplicated_md5': self.is_duplicated(),
             'size': self.get_size(),
             'created': self.get_created(),
             'modified': self.get_modified(),

@@ -15,8 +15,8 @@ class ImageProcessor(BaseFileProcessor):
     ]
 
     def process(self):
-        super().process()
         logger.debug("IMAGE DETECTED!")
+        return super().process()
 
 
     def get_data(self):

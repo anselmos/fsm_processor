@@ -32,6 +32,12 @@ class PGConnector(BaseConnector):
             session.add(File(**data))
             session.commit()
 
+    def add_in_batch(self, data_list):
+        with self.get_session() as session:
+            logger.debug(data_list)
+            session.add_all([File(**element) for element in data_list])
+            session.commit()
+
     def get_query(self, model):
         session = self.get_session()
         return session.query(model)
