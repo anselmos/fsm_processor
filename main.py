@@ -44,9 +44,12 @@ if __name__ == '__main__':
             batch_paths = data['batch']
             file_data_per_batch = []
             for file_path in batch_paths:
-                file_data = process_file(file_path)
-                if file_data:
-                    file_data_per_batch.append(file_data)
+                try:
+                    file_data = process_file(file_path)
+                    if file_data:
+                        file_data_per_batch.append(file_data)
+                except Exception as e:
+                    logger.debug(f"ERROR processing file (parsing): {file_path}, error: {e}")
             pg_connector.add_in_batch(file_data_per_batch)
 
                 # TODO elk save with protobuf grpc.

@@ -1,4 +1,5 @@
 from processors import read_extension
+from processors.archive import ArchiveProcessor
 from processors.image import ImageProcessor
 from processors.unknown import UnknownFileProcessor
 from processors.video import VideoProcessor
@@ -9,6 +10,7 @@ FILE_TYPES_TO_PROCESSOR = {
 }
 FILE_TYPES_TO_PROCESSOR.update(ImageProcessor().file_type_items())
 FILE_TYPES_TO_PROCESSOR.update(VideoProcessor().file_type_items())
+FILE_TYPES_TO_PROCESSOR.update(ArchiveProcessor().file_type_items())
 logger = get_logger_config(__name__)
 
 # FIXME move this into BaseFileProcessor!!
