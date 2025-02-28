@@ -2,6 +2,7 @@ import logging
 import logging.config
 import pickle
 from datetime import datetime
+from os import path, walk
 
 import exiftool
 import redis
@@ -14,6 +15,14 @@ def get_logger_config(name=None):
         "log_date": datetime.now().strftime("%Y-%m-%d_%H_%M_%S")
     })
     return logging.getLogger(name)
+
+def enumerate_files(init_path=None):
+    if not init_path:
+        raise ValueError("No init_path provided - or not available at .env")
+    for (root, dirnames, filenames) in walk(init_path):
+        for filename in filenames:
+            yield path.join(root, filename)
+
 
 def get_paths_redis():
     return redis.Redis(
