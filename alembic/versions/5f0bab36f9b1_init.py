@@ -32,7 +32,7 @@ def upgrade() -> None:
     sa.Column('created', sa.BIGINT(), nullable=False),
     sa.Column('modified', sa.BIGINT(), nullable=False),
     sa.Column('date_created', sa.BIGINT(), nullable=True),
-    sa.Column('exiftool_data', JsonDecorator.JsonDecorator(), nullable=False),
+    sa.Column('exiftool_data', JsonDecorator(), nullable=False),
     sa.Column('File_FileModifyDate', sa.Text(), nullable=False),
     sa.Column('EXIF_ModifyDate', sa.Text(), nullable=False),
     sa.Column('EXIF_DateTimeOriginal', sa.Text(), nullable=False),

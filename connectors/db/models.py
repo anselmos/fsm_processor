@@ -25,8 +25,8 @@ class File(Base):
     File_FileModifyDate: Mapped[str] = mapped_column(Text)
     EXIF_ModifyDate: Mapped[str] = mapped_column(Text)
     EXIF_DateTimeOriginal: Mapped[str] = mapped_column(Text)
-    to_be_deleted: Mapped[bool] = mapped_column(Boolean, default=False)
-    new_path_after_deleted: Mapped[str] = mapped_column(Text, default="")
+    to_be_deleted: Mapped[bool] = mapped_column(Boolean, default=False, nullable=True)
+    new_path_after_deleted: Mapped[str] = mapped_column(Text, default="", nullable=True)
 
     def __repr__(self) -> str:
         return f"path={self.path!r} md5: {self.md5sum}"
